@@ -1,6 +1,6 @@
 # Defect RCA RAG — Architecture
 
-**Repo:** `defect-rca-rag` · **Version:** 1.0.0 · **Source of truth:** the code under `src/`, `scripts/` and `setup.sh` as of the initial commit (`a8fb22b`) plus local uncommitted changes.
+**Repo:** `defect-rca-rag` · **Version:** 1.0.0 · **Source of truth:** the code under `src/`, `scripts/` and `setup.sh` in the current working tree. Most of the code isn't committed yet.
 
 ---
 
@@ -555,8 +555,8 @@ All calls go to `${EXTERNAL_API_BASE_URL}` with `Authorization: Bearer <token>`,
 erDiagram
     DEFECT ||--o{ M2M_TEST_CASE_TASK : "task"
     TEST_CASE ||--o{ M2M_TEST_CASE_TASK : "test_case"
-    DEFECT ||--o| RCA : "u_rca"
-    RCA }o--|| DEFECT : "u_defect"
+    DEFECT ||--o{ RCA : "u_defect (one RCA per mappings call)"
+    DEFECT }o--o| RCA : "u_rca (points to the latest RCA)"
 
     DEFECT {
         string sys_id PK
@@ -705,22 +705,7 @@ flowchart LR
 
 Every service logger is tagged with a service name via `createServiceLogger`. `requestLogger` records method, URL, status, duration and response size. There are no metrics or tracing exporters.
 
-### 10.2 Security posture
-
-| Control | Status |
-|---|---|
-| Inbound authentication / authorization | **None** |
-| Transport security | Plain HTTP; terminate TLS upstream |
-| CORS | `*` with `credentials: true` unless `ALLOWED_ORIGINS` is set |
-| Rate limiting | `/api/*`, 100 per 15 min per IP (defaults) |
-| Security headers | helmet with a restrictive CSP |
-| Secrets | `.env` (git-ignored); OAuth client secret is sent in a form body over HTTPS |
-| Error leakage | Stack traces hidden in production. Controller `500`s still return `error.message` |
-| Unsafe verb | State-changing **GET** on `/mappings` can be triggered by prefetchers, link unfurlers or crawlers |
-| Injection surface | `defectNumber` and `testCaseId` are put directly into `sysparm_query` (`number=${…}`, `sys_id=${…}`) without escaping, so a crafted value can add encoded-query clauses (`^OR…`). This is read-only, and the scope is limited by the OAuth user's ACLs |
-| LLM output → vendor | Generated step text is put into HTML (`_convertStepsToTableUI`) without escaping and posted to vendor |
-
-### 10.3 Error handling strategy
+### 10.2 Error handling strategy
 
 - Each controller method catches its own errors and returns structured JSON. The global `errorHandler` only catches errors passed with `next(err)`, which the current handlers never do.
 - Some failures **degrade** instead of failing: mapping lookup failure falls through to vector search, LLM similarity failure falls back to vector-only confidence, and display-value fetch failure falls back to vector metadata.
@@ -728,28 +713,7 @@ Every service logger is tagged with a service name via `createServiceLogger`. `r
 
 ---
 
-## 11. Known defects and risks
-
-| # | Area | Issue | Impact |
-|---|---|---|---|
-| 1 | Retrieval | `embeddingFunction: 'cosine'` doesn't set the distance space; similarity is probably `2·cos − 1` | Thresholds are stricter than intended, so more `GENERATED` results |
-| 2 | Display merge | `testCases.find(tc => tc.sys_id === tc.sys_id)` shadows the outer variable | Every `EXISTING` result shows the **first** vendor record's fields |
-| 3 | Mapping flow | `vectorDb.getTestCaseById` returns `null` when not found; `ragService.getTestCaseById` then reads `.steps` on it | An unknown `testCaseId` gives a `TypeError`, surfaced as a 500 |
-| 4 | Mapping flow | No idempotency or compensation | Retries create duplicate mappings and RCAs; partial failures leave orphan records |
-| 5 | Correlation | Logger and controller generate separate request IDs | Logs for one request are hard to join |
-| 6 | Config | `setup.sh` env names don't match the code | OAuth fails out of the box |
-| 7 | Config | `CHROMA_HOST/PORT` have no defaults | Startup fails with an unclear error if they're unset |
-| 8 | LLM | `max_tokens` is ignored by Ollama; `OLLAMA_TIMEOUT` is unused | Long or hanging generations aren't bounded |
-| 9 | Data integrity | Required fields (`u_product_service`, `u_product_category`, `assignment_group`, `u_target_version`) are dereferenced without guards | Defects missing any of them fail generation and RCA creation |
-| 10 | Docs drift | `GET /` and startup logs advertise `POST /defects/{n}/mappings` | Misleads API consumers |
-| 11 | Health | `/api/v1/health` reports `healthy` even when a dependency is down | Load balancers and monitors can't rely on it |
-| 12 | Seeder | Newest-first ordering with offset paging | Records can be skipped or duplicated across runs |
-| 13 | Two OAuth caches | Controller and RAGService each hold their own `ExternalApiService` | Two token fetches per process; harmless but wasteful |
-| 14 | Tests | None | Regressions go unnoticed |
-
----
-
-## 12. Glossary
+## 11. Glossary
 
 | Term | Meaning |
 |---|---|

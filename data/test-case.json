@@ -1,0 +1,58 @@
+{
+    "use_default_steps_template": "false",
+    "parent": {
+        "link": "https://jira.service-now.com/api/now/table/x_snc_test_now_test_suite/f954047493e16a505093f5c56aba1015",
+        "value": "f954047493e16a505093f5c56aba1015"
+    },
+    "reason": "low_return_on_investment",
+    "short_description": "[DEF0710261] - Link to add a parent table in permissions tab is labelled as Add parent record",
+    "assignment_group": {
+        "link": "https://jira.service-now.com/api/now/table/sys_user_group/95bd592fdbf7285066e0a345ca961924",
+        "value": "95bd592fdbf7285066e0a345ca961924"
+    },
+    "genai_generated": "false",
+    "automation_priority": "0",
+    "automated_test_method": "",
+    "tm2_test_ref": "",
+    "sys_updated_on": "2025-07-21 22:12:03",
+    "supported_releases": "",
+    "lab_infrastruture": "",
+    "prerequisites": "",
+    "number": "TNTC0514700",
+    "sys_id": "ca7ac487937ae290591c34a86cba109b",
+    "automated_by": "",
+    "estimated_automation_effort": "",
+    "sys_updated_by": "young.li",
+    "sys_created_on": "2025-07-21 22:10:31",
+    "automated_on": "",
+    "product_service": {
+        "link": "https://jira.service-now.com/api/now/table/x_snc_taxonomy_sys_map/d38124af1b2355d0b11efe261a4bcb65",
+        "value": "d38124af1b2355d0b11efe261a4bcb65"
+    },
+    "sys_created_by": "young.li",
+    "assigned_to": {
+        "link": "https://jira.service-now.com/api/now/table/sys_user/bfaeca37db549810fec4fb24399619d6",
+        "value": "bfaeca37db549810fec4fb24399619d6"
+    },
+    "order": "100",
+    "estimated_manual_effort": "",
+    "owner": {
+        "link": "https://jira.service-now.com/api/now/table/sys_user/bfaeca37db549810fec4fb24399619d6",
+        "value": "bfaeca37db549810fec4fb24399619d6"
+    },
+    "created_for_task": "",
+    "sys_mod_count": "8",
+    "priority": "4",
+    "sys_tags": "",
+    "script_name": "",
+    "steps": "<p>Create a playbook<br>Go to properties menu and click on properties<br>click on permissions tab</p>\n<p>OBserve it say \"Add Parent table\"</p>",
+    "peer_approval_status": "not requested",
+    "active_releases": "",
+    "test_types": "fc44bc34db2ba3405931d024ce9619b8",
+    "tm2_test_number": "",
+    "automation_status": "will_not_automate",
+    "work_notes": "",
+    "facet": "1b51b8bcdbe7a3405931d024ce96191a",
+    "created_from": "",
+    "product_category": ""
+}

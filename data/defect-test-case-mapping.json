@@ -1,0 +1,17 @@
+{
+    "sys_id": "ab30f2b0832e22dc22e8cfb5eeaad3dc",
+    "sys_updated_by": "yash.garde",
+    "task": {
+        "link": "https://jira.service-now.com/api/now/table/task/426381a083ee665422e8cfb5eeaad3f7",
+        "value": "426381a083ee665422e8cfb5eeaad3f7"
+    },
+    "sys_created_on": "2025-07-03 00:12:25",
+    "sys_mod_count": "0",
+    "sys_updated_on": "2025-07-03 00:12:25",
+    "sys_tags": "",
+    "test_case": {
+        "link": "https://jira.service-now.com/api/now/table/x_snc_test_now_test_case/91afee74836222dc22e8cfb5eeaad3a7",
+        "value": "91afee74836222dc22e8cfb5eeaad3a7"
+    },
+    "sys_created_by": "yash.garde"
+}

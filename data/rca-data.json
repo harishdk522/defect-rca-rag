@@ -1,0 +1,66 @@
+{
+    "u_how_to_prevent_detect_the_issue": "no",
+    "u_date_introduced": "2023-03-22 04:12:03",
+    "u_product": "",
+    "other": "",
+    "release": {
+        "link": "https://jira.service-now.com/api/now/table/x_snc_build_metada_release/dd3dd8821b60115082e455351a4bcbe0",
+        "value": "dd3dd8821b60115082e455351a4bcbe0"
+    },
+    "u_defect": {
+        "link": "https://jira.service-now.com/api/now/table/x_snc_defect_defect/241750a693ee6114e05c34a86cba1087",
+        "value": "241750a693ee6114e05c34a86cba1087"
+    },
+    "u_defect_cause_classification": "",
+    "watch_list": "",
+    "how_was_the_issue_found": "Other",
+    "sys_updated_on": "2023-06-26 21:46:43",
+    "u_could_a_unit_test_have_caught_this_defect": "Yes but with a method not used in SN",
+    "u_missing_type_of_a_test_that_would_have_caught_this_defect": "",
+    "u_date_discovered": "",
+    "sys_id": "00b24f84937eed50b8d9b0627cba1050",
+    "u_how_are_you_going_to_fill_the_process_or_coverage_gap": "This was tested and caught in mobile-platform team. The related issue is logged here - DEF0383202",
+    "u_how_was_the_issue_discovered": "This was caught internally as well and was in triage. ",
+    "sys_updated_by": "usman.saeed",
+    "sys_created_on": "2023-05-09 19:14:27",
+    "u_missing_test_facet_that_would_have_caught_this_defect": "",
+    "which_instance_was_the_issue_found_on": "Other",
+    "sys_created_by": "surendra.rathod",
+    "defect_short_description": "Mobile App - Clicking on complete in stockroom / location audit is giving \"Could not execute this action\" error message ",
+    "u_areas_of_the_development_process_are_involved_in_this_defect": "Other",
+    "test_coverage_gap": "",
+    "u_notes": "",
+    "u_number": "RCA0002047",
+    "u_product_service": {
+        "link": "https://jira.service-now.com/api/now/table/x_snc_taxonomy_sys_map/edb6e7781b6a5998f7336288bd4bcb0b",
+        "value": "edb6e7781b6a5998f7336288bd4bcb0b"
+    },
+    "u_state": "Approved",
+    "sys_mod_count": "4",
+    "test_cases": "",
+    "u_assignment_group": {
+        "link": "https://jira.service-now.com/api/now/table/sys_user_group/104931fcdb8b9b44a39a0b55ca961981",
+        "value": "104931fcdb8b9b44a39a0b55ca961981"
+    },
+    "sys_tags": "",
+    "u_how_was_the_issue_introduced": "This was caught in time and related issue was in triage. ",
+    "u_rca_type": "Release Candidates",
+    "u_description": "utah",
+    "u_qe_bu_owner": {
+        "link": "https://jira.service-now.com/api/now/table/sys_user/9513636bdbf84c144ac3a851ca961928",
+        "value": "9513636bdbf84c144ac3a851ca961928"
+    },
+    "u_caused_by": {
+        "link": "https://jira.service-now.com/api/now/table/task/241750a693ee6114e05c34a86cba1087",
+        "value": "241750a693ee6114e05c34a86cba1087"
+    },
+    "u_rca_number": "",
+    "other_how_was_issue_found": "The issue was found internally and app-b",
+    "other_instance": "utah",
+    "testing_issue_which_test_types_are_involved": "",
+    "u_product_category": "",
+    "rca_owner": {
+        "link": "https://jira.service-now.com/api/now/table/sys_user/db8b2ceedbc14810fec4fb24399619b9",
+        "value": "db8b2ceedbc14810fec4fb24399619b9"
+    }
+}
